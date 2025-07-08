@@ -1,0 +1,57 @@
+# Fichiers de compilation
+*.o
+*.obj
+*.exe
+*.out
+*.app
+
+# Dossiers de build
+build/
+bin/
+obj/
+Debug/
+Release/
+x64/
+x86/
+
+# Fichiers de debug
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Fichiers de cache
+*.cache
+*.tmp
+*.temp
+
+# Fichiers de sauvegarde
+*~
+*.bak
+*.swp
+*.swo
+
+# Fichiers de log
+*.log
+
+# Fichiers de configuration IDE
+.vscode/
+.idea/
+*.vcxproj.user
+*.vcxproj.filters
+
+# Fichiers de dépendances
+node_modules/
+vendor/
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Fichiers de test
+test_results/
+coverage/
+
+# Fichiers de documentation générés
+docs/html/
+docs/latex/ 
