@@ -189,20 +189,20 @@
         double rho = -0.6;
         double r = 0.01;
         double tau = 0.5; // 1 an
-        // ======= PRICING AVEC TON CODE (HestonPricer) =======
+        //PRICING AVEC MON CODE (HestonPricer)
         HestonPricer myPricer(S0, K, tau, v0, kappa, theta, sigma, rho, r);
         double price_maison = myPricer.price_call();
-        cout << "[Ton code] Prix Call Européen Heston : " << price_maison << endl;
-        // ======= PRICING AVEC TON CODE (HestonGreeks) =======
+        cout << "[Mon code] Prix Call Européen Heston : " << price_maison << endl;
+        //PRICING AVEC MON CODE (HestonGreeks)
         HestonGreeks myGreeks(S0, K, tau, v0, kappa, theta, sigma, rho, r);
         double delta_maison = myGreeks.delta();
-        cout << "[Ton code] Delta : " << delta_maison << endl;
+        cout << "[Mon code] Delta : " << delta_maison << endl;
         double gamma_maison = myGreeks.gamma();
-        cout << "[Ton code] Gamma : " << gamma_maison << endl;
+        cout << "[Mon code] Gamma : " << gamma_maison << endl;
         double vega_maison = myGreeks.vega();
-        cout << "[Ton code] Vega : " << vega_maison << endl;
+        cout << "[Mon code] Vega : " << vega_maison << endl;
         double theta_maison = myGreeks.theta_();
-        cout << "[Ton code] Theta : " << theta_maison << endl;
+        cout << "[Mon code] Theta : " << theta_maison << endl;
 
         return 0;
     }
