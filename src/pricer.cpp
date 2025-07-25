@@ -10,7 +10,6 @@
     #include <vector>
 
     using namespace std;
-
     constexpr double PI = 3.14159265358979323846;
 
     double norm_cdf(double x) {
@@ -119,9 +118,9 @@
         }
     };
 
-    class Greeks : public HestonPricer {
+    class HestonGreeks : public HestonPricer {
     public: 
-        Greeks(double S, double K, double tau, double v, double kappa, double theta, double sigma, double rho, double r)
+        HestonGreeks(double S, double K, double tau, double v, double kappa, double theta, double sigma, double rho, double r)
             : HestonPricer(S, K, tau, v, kappa, theta, sigma, rho, r) {}
 
                 
@@ -190,15 +189,12 @@
         double rho = -0.6;
         double r = 0.01;
         double tau = 0.5; // 1 an
-
-        // ======= PRICING AVEC QUANTLIB =======
-
         // ======= PRICING AVEC TON CODE (HestonPricer) =======
         HestonPricer myPricer(S0, K, tau, v0, kappa, theta, sigma, rho, r);
         double price_maison = myPricer.price_call();
         cout << "[Ton code] Prix Call Européen Heston : " << price_maison << endl;
-        // ======= PRICING AVEC TON CODE (Greeks) =======
-        Greeks myGreeks(S0, K, tau, v0, kappa, theta, sigma, rho, r);
+        // ======= PRICING AVEC TON CODE (HestonGreeks) =======
+        HestonGreeks myGreeks(S0, K, tau, v0, kappa, theta, sigma, rho, r);
         double delta_maison = myGreeks.delta();
         cout << "[Ton code] Delta : " << delta_maison << endl;
         double gamma_maison = myGreeks.gamma();
