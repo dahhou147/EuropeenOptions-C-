@@ -1,8 +1,11 @@
 build/
 bin/
 makefile
+.vscode/
 *.csv
 .MiniConda3-latest-Linux-x86_64.sh
 .vscode/Miniconda3-latest-Linux-x86_64.sh
 
 Miniconda3-latest-Linux-x86_64.sh
+.makefile
+.clang-format
