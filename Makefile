@@ -2,6 +2,7 @@
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Wextra -pedantic -O2
 INCLUDE = -I/usr/include
+INCLUDE += -Isrc
 LIBS = -lnlopt -lm
 
 # Vérifier si nlopt est installé
@@ -16,7 +17,7 @@ else
     LIBS = -lnlopt -lm
 endif
 
-SRC = src/calibrator.cpp
+SRC = src/calibrator.cpp src/main.cpp
 TARGET = heston_calibrator
 
 all: $(TARGET)
@@ -24,7 +25,7 @@ all: $(TARGET)
 $(TARGET): $(SRC)
 	@echo "Compilation avec les flags: $(CXXFLAGS)"
 	@echo "Libraries: $(LIBS)"
-	$(CXX) $(CXXFLAGS) $(INCLUDE) $< -o $@ $(LIBS)
+	$(CXX) $(CXXFLAGS) $(INCLUDE) $(SRC) -o $@ $(LIBS)
 
 # Règle pour installer nlopt si nécessaire
 install-nlopt:
@@ -38,6 +39,15 @@ install-nlopt:
 	else \
 		echo "Gestionnaire de paquets non reconnu. Veuillez installer nlopt manuellement."; \
 	fi
+# Détection libcurl		
+CURL_CHECK := $(shell pkg-config --exists libcurl && echo "yes" || echo "no")
+
+ifeq ($(CURL_CHECK),yes)
+  CXXFLAGS += $(shell pkg-config --cflags libcurl)
+  LIBS += $(shell pkg-config --libs libcurl)
+else
+  LIBS += -lcurl
+endif
 
 # Règle pour vérifier les dépendances
 check-deps:

@@ -25,6 +25,8 @@ struct CalibratedData {
 
 class Calibrator {
 public:
+    std::vector<double> prices;
+    std::vector<double> volatilities;
 
     Calibrator(std::vector<double> prices, std::vector<double> volatilities);
     
