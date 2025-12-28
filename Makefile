@@ -36,6 +36,10 @@ else
   LIBS += -ljsoncpp
 endif
 
+# Ajout des flags MongoDB
+CXXFLAGS += -I/usr/local/include/mongocxx/v_noabi -I/usr/local/include/bsoncxx/v_noabi
+LIBS += -L/usr/local/lib -lmongocxx -lbsoncxx
+
 SRC = src/calibrator.cpp src/main.cpp src/fetchData.cpp
 TARGET = heston_calibrator
 
@@ -44,7 +48,7 @@ all: $(TARGET)
 $(TARGET): $(SRC)
 	@echo "Compilation avec les flags: $(CXXFLAGS)"
 	@echo "Libraries: $(LIBS)"
-	$(CXX) $(CXXFLAGS) $(INCLUDE) $(SRC) -o $@ $(LIBS)
+	$(CXX) $(CXXFLAGS) $(INCLUDE) $(SRC) -o $@ $(LIBS) -Wl,-rpath,/usr/local/lib
 
 # Règle pour installer nlopt si nécessaire
 install-nlopt:
@@ -84,5 +88,10 @@ run: $(TARGET)
 test-compile: $(TARGET)
 	@echo "✓ Compilation réussie!"
 	@echo "Exécutable créé: $(TARGET)"
+
+# Test MongoDB (simplifié)
+test-mongo: $(TARGET)
+	@echo "✓ Test MongoDB compilé"
+	./$(TARGET)
 
 .PHONY: all install-nlopt check-deps clean run test-compile
