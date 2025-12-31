@@ -17,7 +17,6 @@ else
     LIBS = -lnlopt -lm
 endif
 
-# Détection libcurl/jsoncpp
 CURL_CHECK := $(shell pkg-config --exists libcurl && echo "yes" || echo "no")
 JSONCPP_CHECK := $(shell pkg-config --exists jsoncpp && echo "yes" || echo "no")
 
@@ -76,20 +75,16 @@ check-deps:
 		echo "  Tentative de compilation avec les chemins par défaut..."; \
 	fi
 
-# Règle pour nettoyer
 clean:
 	rm -f $(TARGET)
 
-# Règle pour exécuter
 run: $(TARGET)
 	./$(TARGET)
 
-# Règle pour tester la compilation
 test-compile: $(TARGET)
 	@echo "✓ Compilation réussie!"
 	@echo "Exécutable créé: $(TARGET)"
 
-# Test MongoDB (simplifié)
 test-mongo: $(TARGET)
 	@echo "✓ Test MongoDB compilé"
 	./$(TARGET)

@@ -5,7 +5,6 @@ Ce projet implémente plusieurs méthodes de calibration pour le modèle de Hest
 ## Modèle de Heston
 
 Le modèle de Heston décrit l'évolution du prix d'un actif et de sa volatilité par les équations différentielles stochastiques suivantes :
-
 ```
 dS_t = μS_t dt + √v_t S_t dW_t^S
 dv_t = κ(θ - v_t) dt + ξ√v_t dW_t^v
@@ -79,12 +78,10 @@ make
 ```cpp
 #include "calibrator.h"
 
-// Calibration par MLE
 vector<double> asset_prices = {100.0, 101.0, 99.5, 102.0, 100.5};
 vector<double> variances = {0.04, 0.042, 0.038, 0.045, 0.041};
 vector<double> params = calibrate(asset_prices, variances);
 
-// Calibration par prix d'options
 vector<OptionData> options = {
     {100.0, 100.0, 0.25, 0.05, 5.0, true},   // Call ATM
     {100.0, 110.0, 0.25, 0.05, 2.0, true},   // Call OTM
